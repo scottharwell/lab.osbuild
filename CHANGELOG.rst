@@ -5,6 +5,24 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.1.1
+======
+
+Release Summary
+---------------
+
+Converted python scripts to Ansible modules.
+
+Major Changes
+-------------
+
+- Converted python scripts to Ansible modules.
+
+New Modules
+-----------
+
+- lab.osbuild.repo_info - Retrieves information about repositories managed by subscription manager.
+
 v1.1.0
 ======
 

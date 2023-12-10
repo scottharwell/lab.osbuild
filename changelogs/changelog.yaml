@@ -44,3 +44,16 @@ releases:
     fragments:
     - aws.yml
     release_date: '2023-12-10'
+  1.1.1:
+    changes:
+      major_changes:
+      - Converted python scripts to Ansible modules.
+      release_summary: Converted python scripts to Ansible modules.
+    fragments:
+    - module.yml
+    modules:
+    - description: Retrieves information about repositories managed by subscription
+        manager.
+      name: repo_info
+      namespace: ''
+    release_date: '2023-12-10'

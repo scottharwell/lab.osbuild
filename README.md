@@ -1,12 +1,12 @@
-# lab.osbuild A Collection to build cloud VM images
+# lab.osbuild A Collection to build Ansible cloud VM images based on RHEL
 
 ## Introduction
 
 The Ansible on Clouds team has a need to publish VM images that contain the Ansible installer packaged with a standard RHEL base image.  This repository implements examples for creating that image.
 
-This project is a Proof of Concept to include the Ansible Automation Platform repos into the main `osbuild` available repos with the respective RHSM (Red Hat Subscription Manager).
+This project is a proof of concept to include the Ansible Automation Platform repos into the main `osbuild` available repos with the respective RHSM (Red Hat Subscription Manager).
 
-Almost everything was based on the official [osbuild docs][os_build_docs].
+Reference the [osbuild docs][os_build_docs] for information about the files and commands that this collection runs in order to prepare and queue build processes.
 
 ## Instructions
 
@@ -20,6 +20,20 @@ If you are pushing images to AWS, this collection has a playbook that will setup
 
 ```bash
 ansible-navigator run lab.osbuild.aws_setup \
+-i env/inventory \
+--pae false \
+--mode stdout \
+--lf /dev/null \
+--ee false \
+--extra-vars "@env/vars.yml"
+```
+
+#### Azure Setup
+
+If you are pushing images to Azure, this collection has a playbook that will setup the proper resources to deploy images.  View the defaults in the role's defaults file.  Change any variable either inline when running the playbook, or in a vars file like in the example below.
+
+```bash
+ansible-navigator run lab.osbuild.azure_setup \
 -i env/inventory \
 --pae false \
 --mode stdout \
@@ -54,7 +68,7 @@ composer_clouds:
     image_format: ami
 ```
 
-Create an inventory file for your RHEL builder machine.
+Create a local inventory file to connect to your RHEL builder machine.
 
 ```ini
 [builder]
@@ -67,8 +81,6 @@ This collection assumes that you have a RHEL 9 machine that will act as a build 
 
 * The OS must be RHEL 9
 * RHEL should have subscription manager registered and attached
-
-### Setup Host
 
 You should now be ready to run the playbook that will prepare your RHEL host with Image Builder and dependencies.  No extra vars should be required for this playbook.
 

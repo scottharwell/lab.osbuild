@@ -1,0 +1,6 @@
+*.md    linguist-documentation
+*.yml   linguist-detectable=true
+*.yaml   linguist-detectable=true
+*.j2    linguist-detectable=true
+*.fish  text
+*.vim   text
