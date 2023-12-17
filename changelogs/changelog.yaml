@@ -57,3 +57,16 @@ releases:
       name: repo_info
       namespace: ''
     release_date: '2023-12-10'
+  1.1.2:
+    changes:
+      minor_changes:
+      - Remove SSH key from root user.
+      - Updates to the code base of the repo_info module.
+      release_summary: Cleanup repo_info module
+    fragments:
+    - module_updates.yml
+    modules:
+    - description: Retrieves GPG keys from files on Linux systems.
+      name: gpg_file_info
+      namespace: ''
+    release_date: '2023-12-16'

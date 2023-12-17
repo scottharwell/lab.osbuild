@@ -6,8 +6,6 @@
     mode: '0755'
 
 - name: Create osbuild blueprint file
-  vars:
-    _public_key: "{{ lookup('file', composer_local_public_key_file) }}"
   ansible.builtin.template:
     src: "{{ composer_build_name }}/blueprint.j2"
     dest: "{{ composer_osbuild_workdir }}/{{ composer_build_name }}-blueprint.toml"

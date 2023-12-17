@@ -1,0 +1,21 @@
+---
+# This playbook tests the modules included in this collection. It is not used as part of the actual operation of the collection.
+- name: GPG key lookup test
+  hosts: all
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Get gpg keys from file at path
+      lab.osbuild.gpg_file_info:
+        path: /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+      register: key_results
+      become: true
+
+    - name: Debug keys
+      ansible.builtin.debug:
+        var: key_results
+
+    - name: Fail test
+      lab.osbuild.gpg_file_info:
+        path: /fake/path
+      register: failed_repo_results

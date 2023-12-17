@@ -11,6 +11,11 @@ plugins:
   inventory: {}
   lookup: {}
   module:
+    gpg_file_info:
+      description: Retrieves GPG keys from files on Linux systems.
+      name: gpg_file_info
+      namespace: ''
+      version_added: 1.1.2
     repo_info:
       description: Retrieves information about repositories managed by subscription
         manager.
@@ -22,4 +27,4 @@ plugins:
   strategy: {}
   test: {}
   vars: {}
-version: 1.1.1
+version: 1.1.2

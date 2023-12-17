@@ -1,4 +1,5 @@
 ---
+# Setup the storage resources in Azure to push images to.
 - name: Setup Azure resources
   hosts: localhost
   gather_facts: false

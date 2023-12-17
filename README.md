@@ -54,7 +54,6 @@ Next, create a vars file to configure variables that can be saved to the filesys
 
 ```yaml
 ---
-local_public_key_file: ~/.ssh/id_rsa.pub
 composer_build_image_version: "1.0.0"
 composer_azure_storage_account_name: myimageaccount
 composer_azure_storage_container_name: images

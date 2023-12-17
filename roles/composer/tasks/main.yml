@@ -26,3 +26,4 @@
     cloud: "{{ item }}"
   ansible.builtin.include_tasks: build.yml
   loop: "{{ composer_clouds }}"
+  when: composer_run_build

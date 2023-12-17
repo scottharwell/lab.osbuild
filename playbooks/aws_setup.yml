@@ -1,4 +1,5 @@
 ---
+# Setup the storage resources in AWS to push images to.
 - name: Setup AWS account resources
   hosts: localhost
   gather_facts: false

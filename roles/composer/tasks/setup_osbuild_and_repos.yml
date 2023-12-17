@@ -18,7 +18,12 @@
       lab.osbuild.repo_info:
         repo: ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms
       register: repo_data
-    
+
+    - name: Get GPG key data for repo
+      lab.osbuild.gpg_file_info:
+        path: "{{ repo_data.repo_response.gpgkey | replace('file://', '') }}"
+      register: gpg_keys
+
     - name: Create AAP osbuild source file
       ansible.builtin.template:
         src: aap_source.j2

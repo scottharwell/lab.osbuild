@@ -5,6 +5,25 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.1.2
+======
+
+Release Summary
+---------------
+
+Cleanup repo_info module
+
+Minor Changes
+-------------
+
+- Remove SSH key from root user.
+- Updates to the code base of the repo_info module.
+
+New Modules
+-----------
+
+- lab.osbuild.gpg_file_info - Retrieves GPG keys from files on Linux systems.
+
 v1.1.1
 ======
 
