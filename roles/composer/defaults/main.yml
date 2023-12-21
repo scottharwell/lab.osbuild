@@ -7,6 +7,7 @@ composer_rhel_version: "9"
 composer_rhel_distro: "rhel-93"
 composer_podman_auth_file_location: /etc/osbuild-worker/containers-auth.json
 composer_build_image_version: "1.0.0"
+composer_build_image_size: "4096"
 
 composer_create_blueprints: true
 composer_add_epel_repo: false

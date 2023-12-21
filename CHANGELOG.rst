@@ -5,6 +5,19 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.1.3
+======
+
+Release Summary
+---------------
+
+Added the size flag to the composer build command.
+
+Minor Changes
+-------------
+
+- Added the size flag to the composer build command and set the default size to 4096.
+
 v1.1.2
 ======
 
