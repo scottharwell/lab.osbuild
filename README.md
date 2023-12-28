@@ -59,7 +59,6 @@ composer_azure_storage_account_name: myimageaccount
 composer_azure_storage_container_name: images
 composer_aws_bucket: aoc-vm-image-imports
 aws_s3_import_bucket: aoc-vm-image-imports
-aws_s3_export_bucket: aoc-vm-image-exports
 composer_clouds:
   - name: azure
     image_format: vhd
