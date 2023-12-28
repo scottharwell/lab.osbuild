@@ -1,0 +1,4 @@
+---
+release_summary: Minor bug fixes
+minor_changes:
+  - Updated hard-coded architectures.

@@ -1,8 +1,8 @@
 {
-    "x86_64": [
+    "{{ ansible_facts['architecture'] }}": [
         {
             "name": "EPEL",
-            "metalink": "https://download.fedoraproject.org/pub/epel/{{ composer_rhel_version }}/Everything/x86_64",
+            "metalink": "https://download.fedoraproject.org/pub/epel/{{ composer_rhel_version }}/Everything/{{ ansible_facts['architecture'] }}",
             "gpgkey": {{ epel_gpg_key | to_json }},
             "check_gpg": true
         }

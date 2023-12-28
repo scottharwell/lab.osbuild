@@ -11,6 +11,9 @@ composer_rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
 # RHEL version override.  See `composer-cli distros list` for options on the builder host machine.
 composer_rhel_distro: ""
 
+# Ansible RPM Name
+composer_ansible_rpm: "ansible-automation-platform-{{ composer_aap_version }}-for-rhel-{{ composer_rhel_version }}-{{ ansible_facts['architecture'] }}-rpms"
+
 # Location for Podman auth file.
 composer_podman_auth_file_location: /etc/osbuild-worker/containers-auth.json
 

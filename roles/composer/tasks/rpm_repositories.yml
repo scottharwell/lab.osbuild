@@ -3,7 +3,7 @@
   block:
     - name: Get repo data from default path
       lab.osbuild.repo_info:
-        repo: ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms
+        repo: "{{ composer_ansible_rpm }}"
       register: repo_data
 
     - name: Get GPG key data for repo
@@ -20,7 +20,7 @@
     - name: Configure AAP repo
       ansible.builtin.template:
         src: aap_repo.j2
-        dest: "/etc/osbuild-composer/repositories/aap-{{ composer_aap_version }}-rhel-{{ composer_rhel_version }}.repo"
+        dest: "/etc/osbuild-composer/repositories/{{ composer_ansible_rpm }}.repo"
         mode: "0644"
 
 - name: Create EPEL repo files
