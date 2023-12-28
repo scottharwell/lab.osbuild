@@ -9,7 +9,6 @@ rhsm = true
 gpgkeys=[
 {% for key in gpg_keys.gpg_keys %}
 '''{{ key }}'''
-{%- if not loop.last %},
-{% endif %}
+{%- if not loop.last %},{% endif %}
 {% endfor %}
 ]

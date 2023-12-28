@@ -1,0 +1,22 @@
+---
+- name: Config container registry
+  block:
+    - name: Create dir /etc/osbuild-worker/
+      ansible.builtin.file:
+        path: /etc/osbuild-worker/
+        state: directory
+        mode: "0755"
+
+    - name: Create /etc/osbuild-worker/osbuild-worker.toml
+      ansible.builtin.template:
+        src: osbuild-worker.j2
+        dest: /etc/osbuild-worker/osbuild-worker.toml
+        mode: "0644"
+
+    - name: Login to the Red Hat registry with Podman
+      containers.podman.podman_login:
+        username: "{{ podman_username }}"
+        password: "{{ podman_password }}"
+        registry: registry.redhat.io
+        authfile: "{{ composer_podman_auth_file_location }}"
+      register: result_podman_login

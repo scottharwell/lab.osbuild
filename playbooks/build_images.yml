@@ -1,8 +1,10 @@
 ---
-# Runs the process of building VM images
-- name: Build VM images
+# Runs the process of configuring osbuild and building VM images.
+# This will override existing osbuild configurations for the files
+# that are created with this role.
+- name: Configure osbuild and build images
   hosts: all
-  gather_facts: false
+  gather_facts: true
   become: true
   tasks:
     - name: Import composer role

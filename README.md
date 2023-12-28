@@ -124,7 +124,6 @@ ansible-navigator run lab.osbuild.build_images \
 --extra-vars "composer_aws_access_key_id='$AWS_ACCESS_KEY_ID'" \
 --extra-vars "composer_aws_secret_access_key='$AWS_SECRET_ACCESS_KEY'" \
 --extra-vars "composer_aws_session_token='$AWS_SESSION_TOKEN'" \
---extra-vars "composer_aws_bucket='$AWS_SESSION_TOKEN'" \
 --extra-vars "@env/vars.yml" \
 -vv
 ```

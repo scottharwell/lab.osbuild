@@ -1,7 +1,7 @@
 id = "epel"
 name = "EPEL"
 type = "yum-baseurl"
-url = "https://download.fedoraproject.org/pub/epel/{{ composer_rhel_version }}/Everything/x86_64"
+url = "https://download.fedoraproject.org/pub/epel/{{ composer_rhel_version }}/Everything/{{ ansible_facts['architecture'] }}"
 check_gpg = true
 check_ssl = true
 rhsm = false

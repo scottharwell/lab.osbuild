@@ -9,14 +9,15 @@ distro = "{{ composer_rhel_distro }}"
 name = "ansible-automation-platform-installer"
 
 [customizations]
-[customizations.kernel]
-append = ""
 
-[customizations.timezone]
-[customizations.locale]
-[customizations.firewall]
-[customizations.firewall.services]
-[customizations.services]
-[customizations.fdo]
-[customizations.ignition]
-[customizations.ignition.firstboot]
+{% if composer_add_epel_repo %}
+[[customizations.repositories]]
+id = "epel"
+name="Extra Packages for Enterprise Linux $releasever - $basearch"
+baseurls=[ "https://download.fedoraproject.org/pub/epel/$releasever/Everything/     $basearch" ]
+gpgcheck=true
+gpgkeys = [ "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9" ]
+enabled=true
+filename="epel.repo"
+ssl_verify=true
+{% endif %}

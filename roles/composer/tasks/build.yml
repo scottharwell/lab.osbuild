@@ -1,9 +1,19 @@
 ---
 - name: Create a new image build
   vars:
-    _timestamp: "{{ lookup('pipe', 'date +%s') }}"
+    timestamp: "{{ lookup('pipe', 'date +%s') }}"
   ansible.builtin.command:
-    cmd: "composer-cli compose start {{ cloud.name }} {{ cloud.image_format }} {{ cloud.name }}-{{ _timestamp }} {{ composer_osbuild_workdir }}/{{ cloud.name }}-config.toml --size={{ composer_build_image_size }}"
+    cmd: >-
+      composer-cli compose start
+      {{ cloud.name }}
+      {{ cloud.image_format }}
+      {% if cloud.name == 'aws' %}
+      {{ composer_aws_image_key }}
+      {% else %}
+      {{ cloud.name }}-{{ timestamp }}
+      {% endif %}
+      {{ composer_osbuild_workdir }}/{{ cloud.name }}-config.toml
+      --size={{ composer_build_image_size }}
   changed_when: result_create_build.rc == 0
   failed_when: result_create_build.rc == 1
   register: result_create_build

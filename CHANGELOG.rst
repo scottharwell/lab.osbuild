@@ -5,6 +5,23 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.1.4
+======
+
+Release Summary
+---------------
+
+Role portability improvements.
+
+Minor Changes
+-------------
+
+- Added EPEL repo to build blueprints.
+- Broke osbuild configuration into multiple tasks for portability.
+- Remove unneeded assert.
+- Removed conditional variables that became redundant with new task files.
+- Updated build command for AWS key format.
+
 v1.1.3
 ======
 

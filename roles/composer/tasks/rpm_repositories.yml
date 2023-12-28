@@ -1,17 +1,4 @@
 ---
-- name: Create osbuild source directory
-  ansible.builtin.file:
-    path: "{{ composer_osbuild_workdir }}"
-    state: directory
-    mode: "0755"
-
-- name: Create directory /etc/osbuild-composer/repositories/
-  ansible.builtin.file:
-    path: /etc/osbuild-composer/repositories/
-    state: directory
-    mode: "0755"
-    recurse: true
-
 - name: Create AAP repo files
   block:
     - name: Get repo data from default path
@@ -53,29 +40,7 @@
         dest: "/etc/osbuild-composer/repositories/epel_repo.repo"
         mode: "0644"
 
-- name: Config container registry
-  block:
-    - name: Create dir /etc/osbuild-worker/
-      ansible.builtin.file:
-        path: /etc/osbuild-worker/
-        state: directory
-        mode: "0755"
-
-    - name: Create /etc/osbuild-worker/osbuild-worker.toml
-      ansible.builtin.template:
-        src: worker.j2
-        dest: /etc/osbuild-worker/osbuild-worker.toml
-        mode: "0644"
-
-    - name: Login to the Red Hat registry with Podman
-      containers.podman.podman_login:
-        username: "{{ podman_username }}"
-        password: "{{ podman_password }}"
-        registry: registry.redhat.io
-        authfile: "{{ composer_podman_auth_file_location }}"
-      register: result_podman_login
-
-- name: Remove AAP source (ignore errors)
+- name: Remove AAP source
   ansible.builtin.command:
     cmd: "composer-cli sources delete aap-{{ composer_aap_version }}-rhel-{{ composer_rhel_version }}"
   changed_when: result_remove_aap_source.rc == 0
@@ -83,7 +48,7 @@
   register: result_remove_aap_source
   ignore_errors: true
 
-- name: Remove EPEL source (ignore errors)
+- name: Remove EPEL source
   ansible.builtin.command:
     cmd: "composer-cli sources delete epel"
   changed_when: result_remove_epel_source.rc == 0

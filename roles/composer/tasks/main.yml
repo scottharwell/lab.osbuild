@@ -5,15 +5,20 @@
       - podman_username is defined
       - podman_password is defined
 
-- name: Setup osbuild and repos
-  ansible.builtin.import_tasks: setup_osbuild_and_repos.yml
+- name: Create required directories
+  ansible.builtin.import_tasks: directories.yml
+
+- name: Setup build RPM repositories
+  ansible.builtin.import_tasks: rpm_repositories.yml
+
+- name: Setup build container registries
+  ansible.builtin.import_tasks: container_registries.yml
 
 - name: Create osbuild blueprints
   vars:
     composer_build_name: "{{ item.name }}"
   ansible.builtin.include_tasks: blueprint.yml
   loop: "{{ composer_clouds }}"
-  when: composer_create_blueprints
 
 - name: Create credentials files
   vars:
@@ -26,4 +31,3 @@
     cloud: "{{ item }}"
   ansible.builtin.include_tasks: build.yml
   loop: "{{ composer_clouds }}"
-  when: composer_run_build

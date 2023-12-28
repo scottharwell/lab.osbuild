@@ -1,0 +1,12 @@
+---
+# Will create new builds of images that have already been configured.
+# This does not replace any existing build configuration.
+- name: Rebuild VM images
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Import composer role
+      ansible.builtin.import_role:
+        name: composer
+        tasks_from: build.yml
