@@ -3,11 +3,11 @@
   ansible.builtin.file:
     path: "{{ composer_osbuild_workdir }}"
     state: directory
-    mode: "0755"
+    mode: "0770"
 
 - name: Create directory /etc/osbuild-composer/repositories/
   ansible.builtin.file:
     path: /etc/osbuild-composer/repositories/
     state: directory
-    mode: "0755"
+    mode: "0775"
     recurse: true

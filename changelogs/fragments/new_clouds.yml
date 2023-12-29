@@ -1,0 +1,7 @@
+---
+release_summary: Added GCP and OCI to build process
+major_changes:
+  - Added OCI as a build cloud.
+  - Added GCP as a build cloud.
+breaking_changes:
+  - Moved cloud-specific vars to the `clouds` object.

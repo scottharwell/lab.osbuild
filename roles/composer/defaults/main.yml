@@ -1,4 +1,7 @@
 ---
+# Timestamp that can be used to identify builds
+composer_timestamp: "{{ lookup('pipe', 'date +%s') }}"
+
 # Path where osbuild contents will be pushed.
 composer_osbuild_workdir: /tmp/osbuild-aap
 
@@ -7,6 +10,9 @@ composer_aap_version: "2.4"
 
 # The RHEL version that will be used when enabling AAP repos.  Defaults to the host's version.
 composer_rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
+
+# Default name for images
+composer_image_key: "aap-installer-rhel{{ composer_rhel_version }}-{{ ansible_facts['architecture'] }}-{{ composer_timestamp }}"
 
 # RHEL version override.  See `composer-cli distros list` for options on the builder host machine.
 composer_rhel_distro: ""
@@ -26,17 +32,32 @@ composer_build_image_size: "4096"
 # Enables the EPEL repo during build and in the resulting image.
 composer_add_epel_repo: false
 
-# Array of clouds to build images for.  The presence of a cloud requires the proper blueprint and auth files.
+# Array of clouds to build images. The presence of a cloud requires the proper blueprint, auth files, and variables for those files. Leaving these defaults as is will result in build failures.  All variables are required for a given cloud.  You may delete a full cloud entry to omit it.
 composer_clouds:
   - name: azure
     image_format: vhd
+    storage_container_name:
+    storage_account_name:
+    storage_account_access_key:
   - name: aws
     image_format: ami
-
-# The storage container name that will be used to push Azure images.
-composer_azure_storage_container_name: vmimagecontainer
-
-# The S3 details used to push AWS images.
-composer_aws_region: us-east-1
-composer_aws_bucket: vm-image-imports
-composer_aws_image_key: "aap-installer-rhel-9-{{ lookup('pipe', 'date +%s') }}"
+    region: us-east-1
+    bucket:
+    image_key: "{{ composer_image_key }}"
+    access_key_id:
+    secret_access_key:
+    session_token:
+  - name: gcp
+    bucket:
+    region: us-east1
+    image_key: "{{ composer_image_key }}"
+    credentials:
+  - name: oci
+    user:
+    tenancy:
+    fingerprint:
+    region: us-ashburn-1
+    bucket:
+    namespace:
+    compartment:
+    private_key:
