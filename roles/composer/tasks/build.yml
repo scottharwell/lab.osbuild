@@ -4,9 +4,9 @@
     timestamp: "{{ lookup('pipe', 'date +%s') }}"
   ansible.builtin.command:
     cmd: >-
-      composer-cli compose start
-      {{ cloud.name }}
-      {{ cloud.image_format }}
+      composer-cli compose start 
+      {{ cloud.name }} 
+      {{ cloud.image_format }} 
       {% if cloud.name == 'aws' %}
       {{ composer_aws_image_key }}
       {% else %}

@@ -11,6 +11,9 @@ composer_rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
 # RHEL version override.  See `composer-cli distros list` for options on the builder host machine.
 composer_rhel_distro: ""
 
+# Ansible RPM Name
+composer_ansible_rpm: "ansible-automation-platform-{{ composer_aap_version }}-for-rhel-{{ composer_rhel_version }}-{{ ansible_facts['architecture'] }}-rpms"
+
 # Location for Podman auth file.
 composer_podman_auth_file_location: /etc/osbuild-worker/containers-auth.json
 
@@ -36,4 +39,4 @@ composer_azure_storage_container_name: vmimagecontainer
 # The S3 details used to push AWS images.
 composer_aws_region: us-east-1
 composer_aws_bucket: vm-image-imports
-composer_aws_image_key: aap-installer-rhel-9
+composer_aws_image_key: "aap-installer-rhel-9-{{ lookup('pipe', 'date +%s') }}"

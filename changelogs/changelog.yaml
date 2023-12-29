@@ -1,93 +1,99 @@
+---
 ancestor: null
 releases:
   1.0.0:
     changes:
       major_changes:
-      - Migrated repository to collection layout with roles.
-      - Resolved ansible-lint issues.
+        - Migrated repository to collection layout with roles.
+        - Resolved ansible-lint issues.
       release_summary: Created collection of roles for osbuild deployment.
     fragments:
-    - 1-init.yml
+      - 1-init.yml
     release_date: '2023-12-04'
   1.0.1:
     changes:
       major_changes:
-      - Renamed `setup_host` role to `host_setup` to match naming conventions.
+        - Renamed `setup_host` role to `host_setup` to match naming conventions.
       minor_changes:
-      - Added mdlint file.
-      - Changed hosts to be "all" instead of "rhel-dev".
-      - README updates.
+        - Added mdlint file.
+        - Changed hosts to be "all" instead of "rhel-dev".
+        - README updates.
       release_summary: Update repository removing unused variables and README cleanup.
     fragments:
-    - 2.yml
+      - 2.yml
     release_date: '2023-12-04'
   1.0.2:
     changes:
       minor_changes:
-      - Updated use of `shell` command to `copy` and `cmd` since the shell command
-        does not report on stderror.
+        - Updated use of `shell` command to `copy` and `cmd` since the shell command does not report on stderror.
       release_summary: Bug fixes
     fragments:
-    - 3-fixes.yml
+      - 3-fixes.yml
     release_date: '2023-12-05'
   1.1.0:
     changes:
       breaking_changes:
-      - Changed file names to align with conventions in osbuilder documentation.
-      - Removed variables that were specific to Azure or replaced with cloud naming
-        conventions.
+        - Changed file names to align with conventions in osbuilder documentation.
+        - Removed variables that were specific to Azure or replaced with cloud naming conventions.
       major_changes:
-      - Added AWS image build capabilities.
-      - Added AWS setup role.
-      - Added Azure setup role.
+        - Added AWS image build capabilities.
+        - Added AWS setup role.
+        - Added Azure setup role.
       release_summary: Added AWS build blueprint
     fragments:
-    - aws.yml
+      - aws.yml
     release_date: '2023-12-10'
   1.1.1:
     changes:
       major_changes:
-      - Converted python scripts to Ansible modules.
+        - Converted python scripts to Ansible modules.
       release_summary: Converted python scripts to Ansible modules.
     fragments:
-    - module.yml
+      - module.yml
     modules:
-    - description: Retrieves information about repositories managed by subscription
-        manager.
-      name: repo_info
-      namespace: ''
+      - description: Retrieves information about repositories managed by subscription manager.
+        name: repo_info
+        namespace: ''
     release_date: '2023-12-10'
   1.1.2:
     changes:
       minor_changes:
-      - Remove SSH key from root user.
-      - Updates to the code base of the repo_info module.
+        - Remove SSH key from root user.
+        - Updates to the code base of the repo_info module.
       release_summary: Cleanup repo_info module
     fragments:
-    - module_updates.yml
+      - module_updates.yml
     modules:
-    - description: Retrieves GPG keys from files on Linux systems.
-      name: gpg_file_info
-      namespace: ''
+      - description: Retrieves GPG keys from files on Linux systems.
+        name: gpg_file_info
+        namespace: ''
     release_date: '2023-12-16'
   1.1.3:
     changes:
       minor_changes:
-      - Added the size flag to the composer build command and set the default size
-        to 4096.
+        - Added the size flag to the composer build command and set the default size to 4096.
       release_summary: Added the size flag to the composer build command.
     fragments:
-    - size.yml
+      - size.yml
     release_date: '2023-12-21'
   1.1.4:
     changes:
       minor_changes:
-      - Added EPEL repo to build blueprints.
-      - Broke osbuild configuration into multiple tasks for portability.
-      - Remove unneeded assert.
-      - Removed conditional variables that became redundant with new task files.
-      - Updated build command for AWS key format.
+        - Added EPEL repo to build blueprints.
+        - Broke osbuild configuration into multiple tasks for portability.
+        - Remove unneeded assert.
+        - Removed conditional variables that became redundant with new task files.
+        - Updated build command for AWS key format.
       release_summary: Role portability improvements.
     fragments:
-    - breakup_build_steps.yml
+      - breakup_build_steps.yml
     release_date: '2023-12-27'
+  1.1.5:
+    changes:
+      minor_changes:
+        - Continued rhel version abstraction work.
+        - Updated hard-coded architectures.
+      release_summary: Minor bug fixes
+    fragments:
+      - fixes.yml
+    release_date: '2023-12-28'

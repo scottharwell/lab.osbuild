@@ -1,5 +1,5 @@
 {
-    "x86_64": [
+    "{{ ansible_facts['architecture'] }}": [
         {
             "name": "aap-{{ composer_aap_version }}-rhel-{{ composer_rhel_version }}",
             "metalink": "{{ repo_data.repo_response.baseurl }}",

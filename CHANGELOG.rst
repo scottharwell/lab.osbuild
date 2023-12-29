@@ -5,6 +5,20 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.1.5
+======
+
+Release Summary
+---------------
+
+Minor bug fixes
+
+Minor Changes
+-------------
+
+- Continued rhel version abstraction work.
+- Updated hard-coded architectures.
+
 v1.1.4
 ======
 
