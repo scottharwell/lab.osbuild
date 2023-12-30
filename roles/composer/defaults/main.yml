@@ -51,7 +51,7 @@ composer_clouds:
     image_format: gce
     bucket:
     region: us-east1
-    image_key: "{{ composer_image_key }}"
+    image_key: "{{ composer_image_key | replace('_', '-') }}"
     credentials:
   - name: oci
     image_format: oci
