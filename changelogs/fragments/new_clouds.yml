@@ -3,5 +3,9 @@ release_summary: Added GCP and OCI to build process
 major_changes:
   - Added OCI as a build cloud.
   - Added GCP as a build cloud.
+  - Pointed Galaxy metadata to scottharwell repo given drift from original fork.
+minor_changes:
+  - Added role and playbook for OCI object storage setup.
+  - Added role and playbook for GCP object storage setup.
 breaking_changes:
   - Moved cloud-specific vars to the `clouds` object.

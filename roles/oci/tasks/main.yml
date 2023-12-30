@@ -1,0 +1,16 @@
+---
+- name: Create compartment
+  oracle.oci.oci_identity_compartment:
+    parent_compartment_id: "{{ oci_parent_compartment_id }}"
+    description: "{{ oci_compartment_description }}"
+    name: "{{ oci_compartment_name }}"
+  register: compartment_results
+
+- name: Create bucket
+  oracle.oci.oci_object_storage_bucket:
+    compartment_id: "{{ compartment_results.compartment.id }}"
+    namespace_name: "{{ oci_storage_namespace }}"
+    name: "{{ oci_storage_bucket }}"
+    storage_tier: Standard
+    public_access_type: NoPublicAccess
+    object_events_enabled: false
