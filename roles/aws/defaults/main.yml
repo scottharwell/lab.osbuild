@@ -1,6 +1,15 @@
 ---
+# The region where the S3 bucket will be published
 aws_region: us-east-1
+
+# The group name that will be assigned to the role policy
 aws_iam_import_group_name: admin
+
+# The role policy name
 aws_iam_import_role_policy_name: vmimport
+
+# The role trust policy name
 aws_iam_import_trust_policy_name: vmimport
-aws_s3_import_bucket: vm-image-imports
+
+# The name of the S3 bucket to create
+aws_s3_import_bucket:
