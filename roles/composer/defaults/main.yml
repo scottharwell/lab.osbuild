@@ -3,7 +3,7 @@
 composer_timestamp: "{{ lookup('pipe', 'date +%s') }}"
 
 # Path where osbuild contents will be pushed.
-composer_osbuild_workdir: /tmp/osbuild-aap
+composer_osbuild_workdir: /etc/osbuild-composer/osbuild-aap
 
 # The AAP version that will be used when using AAP repositories.
 composer_aap_version: "2.4"
@@ -48,11 +48,13 @@ composer_clouds:
     secret_access_key:
     session_token:
   - name: gcp
+    image_format: gce
     bucket:
     region: us-east1
     image_key: "{{ composer_image_key }}"
     credentials:
   - name: oci
+    image_format: oci
     user:
     tenancy:
     fingerprint:
