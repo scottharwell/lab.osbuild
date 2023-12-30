@@ -22,7 +22,7 @@
 
 - name: Create credentials files
   vars:
-    cloud: "{{ item.name }}"
+    cloud: "{{ item }}"
   ansible.builtin.include_tasks: credentials.yml
   loop: "{{ composer_clouds }}"
 

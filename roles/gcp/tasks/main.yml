@@ -1,0 +1,9 @@
+---
+- name: Create a bucket
+  google.cloud.gcp_storage_bucket:
+    name: "{{ gcp_bucket }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_contents: "{{ gcp_service_account }}"
+    storage_class: STANDARD
+    state: present

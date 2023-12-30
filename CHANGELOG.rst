@@ -5,6 +5,33 @@ Lab.Osbuild Release Notes
 .. contents:: Topics
 
 
+v1.2.0
+======
+
+Release Summary
+---------------
+
+Added GCP and OCI to build process
+
+Major Changes
+-------------
+
+- Added GCP as a build cloud.
+- Added OCI as a build cloud.
+- Changed default location for osbuild work directory.
+- Pointed Galaxy metadata to scottharwell repo given drift from original fork.
+
+Minor Changes
+-------------
+
+- Added role and playbook for GCP object storage setup.
+- Added role and playbook for OCI object storage setup.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- Moved cloud-specific vars to the `clouds` object.
+
 v1.1.5
 ======
 

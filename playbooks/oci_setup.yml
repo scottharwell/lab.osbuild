@@ -1,0 +1,10 @@
+---
+# Setup the storage resources in OCI to push images to.
+- name: Setup OCI account resources
+  hosts: localhost
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Import oci role
+      ansible.builtin.import_role:
+        name: oci

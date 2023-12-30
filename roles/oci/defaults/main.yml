@@ -1,0 +1,18 @@
+---
+# The region where the storage bucket will be published
+oci_region: us-ashburn-1
+
+# The parent ID of the compartment to create
+oci_parent_compartment_id:
+
+# The name of the compartment to deploy resources
+oci_compartment_name:
+
+# The description of the compartment to deploy resources
+oci_compartment_description: A compartment for storing VM images
+
+# The namespace of the storage compartment
+oci_storage_namespace: vm_images
+
+# The name of the storage bucket to create
+oci_storage_bucket:

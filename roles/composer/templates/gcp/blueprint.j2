@@ -1,0 +1,22 @@
+name = "{{ composer_build_name }}"
+description = "AWS RHEL {{ composer_rhel_version }} image with AAP installer"
+version = "{{ composer_build_image_version }}"
+modules = []
+groups = []
+distro = "{{ composer_rhel_distro }}"
+
+[[packages]]
+name = "ansible-automation-platform-installer"
+
+{% if composer_add_epel_repo %}
+[customizations]
+[[customizations.repositories]]
+id = "epel"
+name="Extra Packages for Enterprise Linux $releasever - $basearch"
+baseurls=[ "https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch" ]
+gpgcheck=true
+gpgkeys = [ "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ composer_rhel_version }}" ]
+enabled=true
+filename="epel.repo"
+ssl_verify=true
+{% endif %}

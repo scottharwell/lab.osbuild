@@ -1,0 +1,13 @@
+provider = "oci"
+
+[settings]
+user = "{{ cloud.user }}"
+tenancy = "{{ cloud.tenancy }}"
+fingerprint = "{{ cloud.fingerprint }}"
+region = "{{ cloud.region }}"
+bucket = "{{ cloud.bucket }}"
+namespace = "{{ cloud.namespace }}"
+compartment = "{{ cloud.compartment }}"
+private_key = '''
+{{ cloud.private_key }}
+'''

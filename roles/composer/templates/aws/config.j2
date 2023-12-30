@@ -1,9 +1,11 @@
 provider = "aws"
 
 [settings]
-accessKeyID = "{{ composer_aws_access_key_id }}"
-secretAccessKey = "{{ composer_aws_secret_access_key }}"
-{% if composer_aws_session_token is defined %}sessionToken = "{{ composer_aws_session_token }}"{% endif %}
-bucket = "{{ composer_aws_bucket }}"
-region = "{{ composer_aws_region }}"
-key = "{{ composer_aws_image_key }}"
+accessKeyID = "{{ cloud.access_key_id }}"
+secretAccessKey = "{{ cloud.secret_access_key }}"
+{% if cloud.session_token is defined and (cloud.session_token | length > 0) %}
+sessionToken = "{{ cloud.session_token }}"
+{% endif %}
+bucket = "{{ cloud.bucket }}"
+region = "{{ cloud.region }}"
+key = "{{ cloud.image_key }}"

@@ -1,0 +1,10 @@
+---
+# Setup the storage resources in GCP to push images to.
+- name: Setup GCP account resources
+  hosts: localhost
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Import gcp role
+      ansible.builtin.import_role:
+        name: gcp
