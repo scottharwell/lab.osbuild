@@ -3,3 +3,4 @@ secrets/
 inventory
 env/
 *.log
+__pycache__

@@ -1,0 +1,9 @@
+---
+# The project id of the GCP bucket
+gcp_project:
+
+# The name of the GCP bucket to create
+gcp_bucket:
+
+# The contents of the service account file converted to json
+gcp_service_account:
