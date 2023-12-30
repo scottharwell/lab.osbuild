@@ -82,10 +82,12 @@
   tags:
     - install_dependencies
 
-# HACK: wait for osbuild-composer to start
-- name: Sleep 3
-  ansible.builtin.pause:
-    seconds: 3
+- name: Wait for osbuild-composer to start
+  ansible.builtin.service_facts:
+  until: service_result.ansible_facts.services['osbuild-composer.socket'].state == 'running'
+  retries: 6
+  delay: 10
+  register: service_result
   tags:
     - install_dependencies
 
