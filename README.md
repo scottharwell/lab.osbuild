@@ -171,7 +171,7 @@ There are clouds and cloud image types that are not always supported.  For insta
     composer-cli compose image <uuid of the image>
     ```
 
-6. If you have the Google Cloud CLI on your build manchine, then proceed to step 7.  Otherwise, copy this image file to the machine where the Google Cloud CLI is installed.
+6. If you have the Google Cloud CLI on your build machine, then proceed to step 7.  Otherwise, copy this image file to the machine where the Google Cloud CLI is installed.
 7. Run the following command to ensure that the disk image is in the correct format.
 
     ```bash
