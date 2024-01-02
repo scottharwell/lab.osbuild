@@ -147,5 +147,60 @@ ansible-navigator run lab.osbuild.build_images \
 -vv
 ```
 
+### Unsupported Image Types
+
+There are clouds and cloud image types that are not always supported.  For instance, the `gce` and `oci` types are not available in the `aarch64` version of image builder.  However, you can still use image builder to build ARM images for these platforms.  You can follow these steps, generically, to build an image for any platform.  These steps will create an ARM image for Google Cloud.
+
+1. Run the `lab.osbuild.build_images` playbook with the `gcp` cloud configuration.  This step will fail at built, but it will seed the GCP blueprint and all other required files into the VM hosting image builder.
+2. SSH into the image builder host.
+3. Run the following command to create a `qcow2` image.
+
+    ```bash
+    composer-cli compose start gcp qcow2 --size 4096
+    ```
+
+4. Check the build process using the following command.
+
+    ```bash
+    composer-cli compose list
+    ```
+
+5. Once the build has completed, run the following command to export the image.
+
+    ```bash
+    composer-cli compose image <uuid of the image>
+    ```
+
+6. If you have the Google Cloud CLI on your build manchine, then proceed to step 7.  Otherwise, copy this image file to the machine where the Google Cloud CLI is installed.
+7. Run the following command to ensure that the disk image is in the correct format.
+
+    ```bash
+    qemu-img convert <uuid of the image>-disk.qcow2 -O raw disk.raw -p
+    ```
+
+8. The the following command to properly tar and gzip the file.  You may need to manually install the gnu-tar utility if on a Mac or distribution that does not provide the tar command with support for the `--format` flag.  `gtar` is used in this example as I use a mac and have to call the utility directly since macOS has a native version of the command.
+
+    ```bash
+    gtar -czvf "aap-installer-rhel9-aarch64-.tar.gz" --format=oldgnu disk.raw
+    ```
+
+9. Upload the image to object storage.
+
+    ```bash
+    gcloud storage cp aap-installer-rhel9-aarch64.tar.gz gs://<gcloud bucket name>
+    ```
+
+10. Use the Google Cloud CLI to create the image.  **Note:** You must use the CLI as the console does not support the proper flags to get the image in a running state for ARM processors.
+
+    ```bash
+    gcloud compute images create aap-installer-rhel9-aarch64 \
+    --source-uri=gs://<gcloud bucket name>/aap-installer-rhel9-aarch64.tar.gz \
+    --guest-os-features="UEFI_COMPATIBLE,GVNIC,VIRTIO_SCSI_MULTIQUEUE,SEV_CAPABLE,SEV_SNP_CAPABLE" \
+    --architecture ARM64 \
+    --family rhel-9
+    ```
+
+You now have an `aarch64` version of the machine image ready to run on compatible processors on Google Cloud.
+
 [os_build_docs]: https://www.osbuild.org/guides/introduction.html
 [cloud_images]: https://www.osbuild.org/guides/image-builder-on-premises/uploading-to-cloud.html
